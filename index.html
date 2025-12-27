@@ -169,7 +169,16 @@
             
             // Start music immediately
             const audio = document.getElementById('funkytownAudio');
+            const airhornAudio = document.getElementById('airhornAudio');
+            
             audio.play().catch(e => console.log('Audio play failed:', e));
+            
+            // "Unlock" airhorn audio for mobile by playing and immediately pausing it
+            // This allows future programmatic plays to work
+            airhornAudio.play().then(() => {
+                airhornAudio.pause();
+                airhornAudio.currentTime = 0;
+            }).catch(e => console.log('Airhorn unlock failed:', e));
             
             // Show gif at exact same time
             document.getElementById('arthurGif').classList.add('active');
