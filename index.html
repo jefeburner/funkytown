@@ -61,10 +61,13 @@
             display: none;
             justify-content: center;
             align-items: center;
+            opacity: 0;
+            transition: opacity 1s ease-in;
         }
 
         .fullscreen-gif.active {
             display: flex;
+            opacity: 1;
         }
 
         .fullscreen-gif img {
