@@ -146,20 +146,32 @@
 
     <img src="ju.GIF" alt="Ju" class="random-ju" id="randomJu">
 
-    <audio id="funkytownAudio" src="funkytown.mp3" loop></audio>
-    <audio id="airhornAudio" src="airhorn.mp3"></audio>
+    <audio id="funkytownAudio" src="funkytown.mp3" loop preload="auto"></audio>
+    <audio id="airhornAudio" src="airhorn.mp3" preload="auto"></audio>
 
     <script>
         let juInterval;
+
+        // Preload audio on page load
+        window.addEventListener('load', function() {
+            const funkytownAudio = document.getElementById('funkytownAudio');
+            const airhornAudio = document.getElementById('airhornAudio');
+            
+            // Force load audio files
+            funkytownAudio.load();
+            airhornAudio.load();
+        });
 
         document.getElementById('continueBtn').addEventListener('click', function() {
             // Hide the container and top title immediately
             document.querySelector('.container').classList.add('hidden');
             document.querySelector('.top-title').classList.add('hidden');
             
-            // Start music and show gif at exact same time
+            // Start music immediately
             const audio = document.getElementById('funkytownAudio');
-            audio.play();
+            audio.play().catch(e => console.log('Audio play failed:', e));
+            
+            // Show gif at exact same time
             document.getElementById('arthurGif').classList.add('active');
             
             // Start the random ju.gif appearance
@@ -209,12 +221,12 @@
             juElement.src = '';
             juElement.src = currentSrc;
             
-            // Play airhorn sound first
-            airhornAudio.currentTime = 0; // Reset to start
-            airhornAudio.play();
-            
-            // Show the gif immediately
+            // Show the gif first
             juElement.classList.add('show');
+            
+            // Play airhorn sound - clone and play for better mobile support
+            airhornAudio.currentTime = 0;
+            airhornAudio.play().catch(e => console.log('Airhorn play failed:', e));
             
             // Hide after gif plays twice (assuming ~2 seconds per loop = 4 seconds total)
             setTimeout(() => {
