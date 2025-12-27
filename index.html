@@ -146,8 +146,14 @@
 
     <img src="ju.GIF" alt="Ju" class="random-ju" id="randomJu">
 
-    <audio id="funkytownAudio" src="funkytown.mp3" loop preload="auto"></audio>
-    <audio id="airhornAudio" src="airhorn.mp3" preload="auto"></audio>
+    <audio id="funkytownAudio" loop preload="auto">
+        <source src="funkytown.m4a" type="audio/mp4">
+        <source src="funkytown.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="airhornAudio" preload="auto">
+        <source src="airhorn.m4a" type="audio/mp4">
+        <source src="airhorn.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         let juInterval;
@@ -196,7 +202,7 @@
                 // Total cycle time: 8 seconds wait + ~4 seconds for gif to play twice
                 juInterval = setInterval(() => {
                     showRandomJu();
-                }, 11000); // 8 seconds wait + 4 seconds for gif display
+                }, 12000); // 8 seconds wait + 4 seconds for gif display
             }, 8000);
         }
 
@@ -250,7 +256,7 @@
             // Hide after gif plays twice (assuming ~2 seconds per loop = 4 seconds total)
             setTimeout(() => {
                 juElement.classList.remove('show');
-            }, 3500);
+            }, 4000);
         }
     </script>
 </body>
