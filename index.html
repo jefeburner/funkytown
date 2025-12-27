@@ -58,16 +58,17 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            display: none;
+            display: flex;
             justify-content: center;
             align-items: center;
             opacity: 0;
+            pointer-events: none;
             transition: opacity 1s ease-in;
         }
 
         .fullscreen-gif.active {
-            display: flex;
             opacity: 1;
+            pointer-events: auto;
         }
 
         .fullscreen-gif img {
