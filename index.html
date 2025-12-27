@@ -230,12 +230,13 @@
             juElement.src = '';
             juElement.src = currentSrc;
             
-            // Show the gif first
-            juElement.classList.add('show');
-            
-            // Play airhorn sound - clone and play for better mobile support
+            // Rewind and play the already-unlocked airhorn audio
+            airhornAudio.pause();
             airhornAudio.currentTime = 0;
             airhornAudio.play().catch(e => console.log('Airhorn play failed:', e));
+            
+            // Show the gif at the exact same time
+            juElement.classList.add('show');
             
             // Hide after gif plays twice (assuming ~2 seconds per loop = 4 seconds total)
             setTimeout(() => {
