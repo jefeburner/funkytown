@@ -230,12 +230,19 @@
             juElement.src = '';
             juElement.src = currentSrc;
             
-            // Play airhorn first
-            airhornAudio.pause();
-            airhornAudio.currentTime = 0;
-            airhornAudio.play().catch(e => console.log('Airhorn play failed:', e));
+            // Play airhorn first (ensure it's properly reset)
+            try {
+                airhornAudio.pause();
+                airhornAudio.currentTime = 0;
+                // Force a brief moment before replaying to ensure mobile browsers handle it
+                setTimeout(() => {
+                    airhornAudio.play().catch(e => console.log('Airhorn play failed:', e));
+                }, 10);
+            } catch(e) {
+                console.log('Airhorn reset failed:', e);
+            }
             
-            // Show the gif 300ms after airhorn starts
+            // Show the gif 300ms after function is called
             setTimeout(() => {
                 juElement.classList.add('show');
             }, 300);
