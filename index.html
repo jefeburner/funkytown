@@ -189,8 +189,11 @@
                 airhornAudio.currentTime = 0;
             }).catch(e => console.log('Airhorn unlock failed:', e));
             
-            // Show gif at exact same time
-            document.getElementById('arthurGif').classList.add('active');
+            // Show gif with fade effect
+            const arthurGif = document.getElementById('arthurGif');
+            arthurGif.classList.add('active');
+            // Trigger reflow to enable transition
+            arthurGif.offsetHeight;
             
             // Start the random ju.gif appearance
             startJuSequence();
