@@ -177,10 +177,11 @@
             document.querySelector('.container').classList.add('hidden');
             document.querySelector('.top-title').classList.add('hidden');
             
-            // Start music immediately
+            // Start music immediately at 0:55
             const audio = document.getElementById('funkytownAudio');
             const airhornAudio = document.getElementById('airhornAudio');
             
+            audio.currentTime = 55; // Start at 0:55
             audio.play().catch(e => console.log('Audio play failed:', e));
             
             // "Unlock" airhorn audio for mobile by playing and immediately pausing it
