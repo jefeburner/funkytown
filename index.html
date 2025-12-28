@@ -177,22 +177,11 @@
             document.querySelector('.container').classList.add('hidden');
             document.querySelector('.top-title').classList.add('hidden');
             
-            // Start music immediately at 0:55
+            // Start music immediately
             const audio = document.getElementById('funkytownAudio');
             const airhornAudio = document.getElementById('airhornAudio');
             
-            // Set start time and play
-            audio.currentTime = 55; // Start at 0:55
-            const playPromise = audio.play();
-            
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    // Playback started, ensure we're at the right time
-                    if (audio.currentTime < 54) {
-                        audio.currentTime = 55;
-                    }
-                }).catch(e => console.log('Audio play failed:', e));
-            }
+            audio.play().catch(e => console.log('Audio play failed:', e));
             
             // "Unlock" airhorn audio for mobile by playing and immediately pausing it
             // This allows future programmatic plays to work
